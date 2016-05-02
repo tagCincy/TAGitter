@@ -7,7 +7,8 @@ gem 'pg', '~> 0.18'
 gem 'redis', '~> 3.0'
 gem 'puma', '~> 3.0'
 gem 'jbuilder', '~> 2.0'
-gem 'devise', '~> 4.0.1'                        #
+gem 'devise', '~> 4.0.1'
+gem 'devise_token_auth', '~> 0.1.37'
 gem 'pundit', '~> 1.1.0'
 
 
@@ -25,6 +26,7 @@ end
 group :test do
   gem 'database_cleaner', '~> 1.5.3'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', '~> 0.11.2', :require => false
 end
 
 group :development do

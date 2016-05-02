@@ -6,6 +6,9 @@ RSpec.describe User, type: :model do
     it { should respond_to :email }
     it { should respond_to :handle }
     it { should respond_to :password }
+    it { should respond_to :posts_count }
+    it { should respond_to :follow_count }
+    it { should respond_to :follower_count }
 
     context 'devise attributes' do
       it { should respond_to :reset_password_token }
@@ -33,7 +36,12 @@ RSpec.describe User, type: :model do
   end
 
   context 'associations' do
-
+    it { should have_one(:profile) }
+    it { should have_many(:user_followings).class_name('UserFollow').with_foreign_key(:follow_id) }
+    it { should have_many(:follows).through(:user_followings) }
+    it { should have_many(:user_followers).class_name('UserFollow').with_foreign_key(:follower_id) }
+    it { should have_many(:followers).through(:user_followers) }
+    it { should have_many(:posts) }
   end
 
   context 'scopes' do

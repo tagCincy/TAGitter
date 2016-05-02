@@ -1,3 +1,15 @@
+require 'simplecov'
+
+SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
+
+SimpleCov.start 'rails' do
+  add_filter '/vendor/'
+  add_filter '/bin/'
+  add_filter '/lib/'
+  add_filter '/app/views/'
+  minimum_coverage_by_file 80
+end
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|
