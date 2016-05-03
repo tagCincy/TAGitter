@@ -17,6 +17,11 @@ FactoryGirl.define do
       end
     end
 
+    trait :protected do
+      profile { create(:protected_profile) }
+    end
+
     factory :confirmed_user, traits: [:confirmed]
+    factory :protected_user, traits: [:confirmed, :protected]
   end
 end

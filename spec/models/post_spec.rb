@@ -46,12 +46,12 @@ RSpec.describe Post, type: :model do
       subject { build_stubbed(:post) }
 
       it 'should indicate the post is a repost' do
-        expect(subject.repost?).to be_falsey
+        expect(subject.is_repost?).to be_falsey
       end
 
       it 'should indicate the post is not a repost' do
         subject = build_stubbed(:repost)
-        expect(subject.repost?).to be_truthy
+        expect(subject.is_repost?).to be_truthy
       end
 
     end

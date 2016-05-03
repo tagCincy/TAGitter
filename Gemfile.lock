@@ -24,6 +24,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.0.rc5)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activejob (5.0.0.beta4)
       activesupport (= 5.0.0.beta4)
       globalid (>= 0.3.6)
@@ -67,9 +71,6 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
-    jbuilder (2.4.1)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     json (1.8.3)
     listen (3.0.7)
       rb-fsevent (>= 0.9.3)
@@ -84,10 +85,11 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.3)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oj (2.15.0)
+    oj_mimic_json (1.0.1)
     orm_adapter (0.5.0)
     pg (0.18.4)
     pry (0.10.3)
@@ -104,6 +106,7 @@ GEM
       activesupport (>= 3.0.0)
     rack (2.0.0.alpha)
       json
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta4)
@@ -189,18 +192,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0.rc5)
   database_cleaner (~> 1.5.3)
   devise (~> 4.0.1)
   devise_token_auth (~> 0.1.37)
   factory_girl_rails (~> 4.7.0)
   ffaker (~> 2.2.0)
-  jbuilder (~> 2.0)
   listen (~> 3.0.5)
+  oj (~> 2.15.0)
+  oj_mimic_json
   pg (~> 0.18)
   pry-byebug
   pry-rails
   puma (~> 3.0)
   pundit (~> 1.1.0)
+  rack-cors
   rails (>= 5.0.0.beta4, < 5.1)
   redis (~> 3.0)
   rspec-rails (~> 3.5.0.beta3)

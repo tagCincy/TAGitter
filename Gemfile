@@ -6,14 +6,13 @@ gem 'rails', '>= 5.0.0.beta4', '< 5.1'
 gem 'pg', '~> 0.18'
 gem 'redis', '~> 3.0'
 gem 'puma', '~> 3.0'
-gem 'jbuilder', '~> 2.0'
+gem 'active_model_serializers', '~> 0.10.0.rc5'
+gem 'oj', '~> 2.15.0'
+gem 'oj_mimic_json'
 gem 'devise', '~> 4.0.1'
 gem 'devise_token_auth', '~> 0.1.37'
 gem 'pundit', '~> 1.1.0'
-
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry-rails'

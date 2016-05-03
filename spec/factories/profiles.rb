@@ -5,5 +5,11 @@ FactoryGirl.define do
     location "Cincinnati, Ohio"
     dob { rand(13..35).years.ago.to_date }
     protected false
+
+    trait :protected do
+      protected true
+    end
+
+    factory :protected_profile, traits: [ :protected ]
   end
 end

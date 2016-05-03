@@ -12,4 +12,6 @@ class User < ApplicationRecord
   has_many :followers, through: :user_followers
   has_many :posts
 
+  delegate :name, :bio, :dob, :location, :protected, to: :profile
+
 end
