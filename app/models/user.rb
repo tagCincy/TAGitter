@@ -15,12 +15,17 @@ class User < ApplicationRecord
   has_many :posts
 
   def self.find(id)
-    (id.to_i != 0) ? super : find_by_handle(id)
+    begin
+      Integer(id)
+    rescue ArgumentError, TypeError
+      find_by_handle(id)
+    else
+      super
+    end
   end
 
   def to_param
     handle
   end
-
 
 end

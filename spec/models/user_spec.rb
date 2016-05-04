@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
       it { should respond_to :confirmation_token }
       it { should respond_to :confirmed_at }
       it { should respond_to :confirmation_sent_at }
-      it { should respond_to :unconfirmed_email  }
+      it { should respond_to :unconfirmed_email }
     end
   end
 
@@ -61,9 +61,14 @@ RSpec.describe User, type: :model do
 
   context 'methods' do
 
-    let!(:_user) { build_stubbed(:confirmed_user) }
+    let!(:_user) { create(:confirmed_user) }
 
     context '#class' do
+
+      it "should find by handle or id" do
+        expect(User.find(_user.handle)).to eql(_user)
+        expect(User.find(_user.id)).to eql(_user)
+      end
 
     end
 
