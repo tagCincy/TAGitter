@@ -9,6 +9,12 @@ RSpec.describe User, type: :model do
     it { should respond_to :posts_count }
     it { should respond_to :follow_count }
     it { should respond_to :follower_count }
+    it { should respond_to :name }
+    it { should respond_to :bio }
+    it { should respond_to :location }
+    it { should respond_to :dob }
+    it { should respond_to :protected }
+    it { should respond_to :protected? }
 
     context 'devise attributes' do
       it { should respond_to :reset_password_token }
@@ -31,6 +37,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:handle) }
     it { should validate_presence_of(:handle) }
+    it { should validate_length_of(:handle).is_at_least(3).is_at_most(15) }
     it { should validate_presence_of(:password) }
     it { should validate_confirmation_of(:password) }
   end
@@ -53,6 +60,20 @@ RSpec.describe User, type: :model do
   end
 
   context 'methods' do
+
+    let!(:_user) { build_stubbed(:confirmed_user) }
+
+    context '#class' do
+
+    end
+
+    context '#instance' do
+
+      it 'should return user handle as param' do
+        expect(_user.to_param).to eql(_user.handle)
+      end
+
+    end
 
   end
 

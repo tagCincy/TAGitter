@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
 
     trait :protected do
-      association :user, factory: [:protected_user]
+      association :user, factory: :protected_user
     end
 
     factory :repost, traits: [:reposted]

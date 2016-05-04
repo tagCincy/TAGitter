@@ -21,8 +21,4 @@ class Api::V1::Public::PostsController < ApplicationController
     raise Pundit::NotAuthorizedError unless Api::V1::Public::PostPolicy.new(@post).send("#{self.action_name}?")
   end
 
-  def permission_denied
-    head(:not_found)
-  end
-
 end

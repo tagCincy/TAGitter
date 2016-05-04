@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   private
 
   def permission_denied
-    head(:forbidden)
+    params[:controller] =~ /api\/v1\/public\/.?/ ? head(:not_found) : head(:forbidden)
   end
 
 end

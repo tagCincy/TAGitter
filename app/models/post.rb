@@ -2,6 +2,8 @@ class Post < ApplicationRecord
 
   alias_attribute :post_time, :created_at
 
+  delegate :protected?, to: :user
+
   validates_presence_of :body, unless: proc { |record| record.is_repost? }
 
   belongs_to :user, -> { includes(:profile) }, counter_cache: true
@@ -15,10 +17,6 @@ class Post < ApplicationRecord
 
   def is_repost?
     repost.present?
-  end
-
-  def is_unprotected?
-    !user.protected
   end
 
 end

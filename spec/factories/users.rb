@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "#{FFaker::Lorem.word}.#{n}@tagitter.com" }
-    sequence(:handle) { |n| "#{FFaker::Internet.user_name}#{n}" }
+    sequence(:handle) { |n| "#{FFaker::Lorem.characters(rand(3..12))}#{n}" }
     password 'password'
     password_confirmation 'password'
     profile

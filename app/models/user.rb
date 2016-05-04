@@ -3,7 +3,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :handle, presence: true, uniqueness: true
+  delegate :name, :bio, :dob, :location, :protected, :protected?, to: :profile
+
+  validates :handle, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_]+\z/}, length: { in: 3..15 }
 
   has_one :profile
   has_many :user_followings, class_name: 'UserFollow', foreign_key: :follow_id
@@ -12,6 +14,13 @@ class User < ApplicationRecord
   has_many :followers, through: :user_followers
   has_many :posts
 
-  delegate :name, :bio, :dob, :location, :protected, to: :profile
+  def self.find(id)
+    (id.to_i != 0) ? super : find_by_handle(id)
+  end
+
+  def to_param
+    handle
+  end
+
 
 end
