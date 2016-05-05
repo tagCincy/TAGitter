@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :post do
     body { FFaker::HipsterIpsum.paragraph.truncate(rand(50..144), separator: /\s/, omission: '') }
     deleted false
-    association :user, factory: [:confirmed_user]
+    association :user, factory: [:user]
     created_at { rand(1..5000).minutes.ago }
 
     trait :reposted do

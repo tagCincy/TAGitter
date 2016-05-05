@@ -4,7 +4,7 @@ RSpec.describe "Api::V1::Public::Users", type: :request do
 
   describe 'GET /users/:id' do
 
-    let!(:_user) { create(:confirmed_user) }
+    let!(:_user) { create(:user) }
 
     it 'should return a valid response' do
       get "/api/v1/public/users/#{_user.handle}"

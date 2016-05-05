@@ -194,7 +194,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (~> 0.10.0.rc5)
+  active_model_serializers (~> 0.10.0.rc4)
   database_cleaner (~> 1.5.3)
   devise (~> 4.0.1)
   devise_token_auth (~> 0.1.37)

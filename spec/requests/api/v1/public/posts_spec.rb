@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::Public::Posts", type: :request do
     end
 
     it "should not return posts from protected users" do
-      protected_user = create(:confirmed_user, profile: create(:protected_profile))
+      protected_user = create(:user, profile: create(:protected_profile))
       protected_post = create(:post, user: protected_user)
       get '/api/v1/public/posts'
       ids = json.map { |p| p[:id] }
