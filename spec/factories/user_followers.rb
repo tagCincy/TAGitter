@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :user_follow do
-    association :follow, factory: [:user]
+  factory :user_follower do
+    association :followed, factory: [:user]
     association :follower, factory: [:user]
   end
 end

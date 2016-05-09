@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     it { should respond_to :handle }
     it { should respond_to :password }
     it { should respond_to :posts_count }
-    it { should respond_to :follow_count }
+    it { should respond_to :followed_count }
     it { should respond_to :follower_count }
     it { should respond_to :name }
     it { should respond_to :bio }
@@ -29,9 +29,10 @@ RSpec.describe User, type: :model do
   end
 
   context 'validations' do
+    subject { build(:user) }
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:handle) }
+    it { should validate_uniqueness_of(:handle).case_insensitive }
     it { should validate_presence_of(:handle) }
     it { should validate_length_of(:handle).is_at_least(3).is_at_most(15) }
     it { should validate_presence_of(:password) }
@@ -40,9 +41,9 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
     it { should have_one(:profile) }
-    it { should have_many(:user_followings).class_name('UserFollow').with_foreign_key(:follow_id) }
-    it { should have_many(:follows).through(:user_followings) }
-    it { should have_many(:user_followers).class_name('UserFollow').with_foreign_key(:follower_id) }
+    it { should have_many(:users_followed).class_name('UserFollower').with_foreign_key(:follower_id) }
+    it { should have_many(:followed).through(:users_followed) }
+    it { should have_many(:user_followers).class_name('UserFollower').with_foreign_key(:followed_id) }
     it { should have_many(:followers).through(:user_followers) }
     it { should have_many(:posts) }
   end
@@ -62,8 +63,8 @@ RSpec.describe User, type: :model do
     context '#class' do
 
       it "should find by handle or id" do
-        expect(User.find(_user.handle)).to eql(_user)
-        expect(User.find(_user.id)).to eql(_user)
+        expect(User.find_by_identifier(_user.handle)).to eql(_user)
+        expect(User.find_by_identifier(_user.id)).to eql(_user)
       end
 
     end

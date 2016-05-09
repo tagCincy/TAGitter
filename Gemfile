@@ -11,7 +11,7 @@ gem 'oj', '~> 2.15.0'
 gem 'oj_mimic_json'
 gem 'devise', '~> 4.0.1'
 gem 'devise_token_auth', '~> 0.1.37'
-gem 'pundit', '~> 1.1.0'
+gem 'pundit', github: 'elabs/pundit'
 gem 'rack-cors'
 gem 'friendly_id', '~> 5.1.0'
 

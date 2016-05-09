@@ -1,7 +1,11 @@
 module RequestHelpers
+  include Warden::Test::Helpers
 
-  def json
-    JSON.parse(response.body, { symbolize_names: true })
+  def login
+    before(:each) do
+      @user = create(:user)
+      @auth_headers = @user.create_new_auth_token
+    end
   end
 
 end

@@ -40,5 +40,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.include RequestHelpers, type: :request
+  config.extend RequestHelpers, type: :request
+  config.include RequestUtils, type: :request
 end

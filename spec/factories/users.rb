@@ -1,11 +1,17 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |n| "#{FFaker::Lorem.word}.#{n}@tagitter.com" }
-    sequence(:handle) { |n| "#{FFaker::Lorem.characters(rand(3..12))}#{n}" }
+
+    ignore do
+      first_name { FFaker::Name.first_name }
+      last_name { FFaker::Name.last_name }
+    end
+
+    sequence(:email) { |n| "#{[first_name, last_name].join('.')}.#{n}@tagitter.com" }
+    sequence(:handle) { |n| "#{first_name}#{n}" }
     password 'password'
     password_confirmation 'password'
     provider 'email'
-    profile
+    profile { create(:profile, name: [first_name, last_name].join(' ')) }
 
     trait :protected do
       profile { create(:protected_profile) }

@@ -7,6 +7,7 @@ class DeviseOverrides::SessionsController < DeviseTokenAuth::SessionsController
 
     q_value = resource_params[field]
     q_value.downcase! if resource_class.case_insensitive_keys.include?(field)
+
     @resource = User.find_for_auth(q_value).first
 
     if @resource and valid_params?(field, q_value) and @resource.valid_password?(resource_params[:password]) and (!@resource.respond_to?(:active_for_authentication?) or @resource.active_for_authentication?)

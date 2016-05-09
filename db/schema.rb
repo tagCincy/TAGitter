@@ -51,34 +51,34 @@ ActiveRecord::Schema.define(version: 20160504121518) do
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
-  create_table "user_follows", force: :cascade do |t|
-    t.integer  "follow_id"
+  create_table "user_followers", force: :cascade do |t|
+    t.integer  "followed_id"
     t.integer  "follower_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["follow_id"], name: "index_user_follows_on_follow_id", using: :btree
-    t.index ["follower_id"], name: "index_user_follows_on_follower_id", using: :btree
+    t.index ["followed_id"], name: "index_user_followers_on_followed_id", using: :btree
+    t.index ["follower_id"], name: "index_user_followers_on_follower_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",                          null: false
-    t.string   "handle",                 default: "",                          null: false
-    t.string   "encrypted_password",     default: "",                          null: false
+    t.string   "email",                  default: "",      null: false
+    t.string   "handle",                 default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,                           null: false
+    t.integer  "sign_in_count",          default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
-    t.integer  "follow_count",           default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "followed_count",         default: 0
     t.integer  "follower_count",         default: 0
     t.integer  "posts_count",            default: 0
-    t.string   "provider",               default: "email",                     null: false
-    t.uuid     "uid",                    default: -> { "uuid_generate_v4()" }
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid"
     t.jsonb    "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -89,6 +89,6 @@ ActiveRecord::Schema.define(version: 20160504121518) do
   add_foreign_key "posts", "posts", column: "repost_id", on_delete: :cascade
   add_foreign_key "posts", "users", on_delete: :cascade
   add_foreign_key "profiles", "users", on_delete: :cascade
-  add_foreign_key "user_follows", "users", column: "follow_id", on_delete: :cascade
-  add_foreign_key "user_follows", "users", column: "follower_id", on_delete: :cascade
+  add_foreign_key "user_followers", "users", column: "followed_id", on_delete: :cascade
+  add_foreign_key "user_followers", "users", column: "follower_id", on_delete: :cascade
 end

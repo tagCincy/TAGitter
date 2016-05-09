@@ -9,11 +9,11 @@ class Api::V1::Public::UsersController < ApplicationController
   private
 
   def fetch_user
-    @user = User.find params[:id]
+    @user = User.find_by_identifier params[:id]
   end
 
   def authorize_action
-    raise Pundit::NotAuthorizedError unless Api::V1::Public::UserPolicy.new(@user).send("#{self.action_name}?")
+    raise Pundit::NotAuthorizedError unless User::PublicUserPolicy.new(@user).send("#{self.action_name}?")
   end
 
 end

@@ -1,5 +1,4 @@
-class Api::V1::Public::UserPolicy < ApplicationPolicy
-
+class User::PublicUserPolicy < ApplicationPolicy
   def initialize(record)
     @record = record
   end
@@ -7,5 +6,4 @@ class Api::V1::Public::UserPolicy < ApplicationPolicy
   def show?
     !record.protected?
   end
-
 end
