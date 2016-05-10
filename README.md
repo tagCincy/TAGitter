@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/tagCincy/TAGitter/tree/master.svg?style=svg)](https://circleci.com/gh/tagCincy/TAGitter/tree/master)
+[![Circle CI](https://circleci.com/gh/tagCincy/TAGitter/tree/master.svg?style=svg&circle-token=3807a3dde2591340c817b4bc46f3e084dafdbb78)](https://circleci.com/gh/tagCincy/TAGitter/tree/master)
 
 # TAGitter
 
