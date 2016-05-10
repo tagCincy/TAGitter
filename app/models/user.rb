@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
+  has_many :favorited_posts, class_name: 'FavoritedPost'
+
   after_create :build_profile, unless: proc { |record| !!record.profile }
 
   scope :find_for_auth, -> (login) { where("provider='email' AND (lower(email)=:login OR lower(handle)=:login)", { login: login }) }
