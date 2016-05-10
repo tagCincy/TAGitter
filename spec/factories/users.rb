@@ -21,7 +21,12 @@ FactoryGirl.define do
       profile_attributes { attributes_for(:profile) }
     end
 
+    trait :followed do
+      association :follower, factory: [:user]
+    end
+
     factory :protected_user, traits: [:protected]
     factory :user_attributes, traits: [:attributed]
+    factory :followed_user, traits: [:followed]
   end
 end

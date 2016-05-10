@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       end
 
       namespace :authenticated do
-        resources :users, only: [:show, :update]
+        resources :users, only: [:show, :update] do
+          member do
+            post '/follow', to: 'users/follows#create'
+            delete 'unfollow', to: 'users/follows#destroy'
+          end
+        end
       end
 
     end

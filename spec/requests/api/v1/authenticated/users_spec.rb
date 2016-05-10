@@ -73,5 +73,17 @@ describe "Api::V1::Authenticated::Users", type: :request do
 
   context 'as an unauthenticated user' do
 
+    let!(:_user) { create :user }
+
+    it "should not be able to view a user" do
+      get "/api/v1/authenticated/users/#{_user.handle}", {}, {}
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "should not be able to update a user" do
+      patch "/api/v1/authenticated/users/#{_user.handle}", { user: { email: 'foo@bar.com' } }, {}
+      expect(response).to have_http_status(:unauthorized)
+    end
+
   end
 end
