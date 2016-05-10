@@ -18,7 +18,7 @@ class Api::V1::Public::PostsController < ApplicationController
   end
 
   def authorize_action
-    raise Pundit::NotAuthorizedError unless Api::V1::Public::PostPolicy.new(@post).send("#{self.action_name}?")
+    raise Pundit::NotAuthorizedError unless Post::PublicPostPolicy.new(@post).send("#{self.action_name}?")
   end
 
 end

@@ -20,6 +20,10 @@ Rails.application.routes.draw do
             delete 'unfollow', to: 'users/follows#destroy'
           end
         end
+
+        resources :posts, only: [:index, :show, :create, :update, :destroy] do
+
+        end
       end
 
     end

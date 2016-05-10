@@ -1,4 +1,4 @@
-class Api::V1::Public::PostPolicy < ApplicationPolicy
+class Post::PublicPostPolicy < ApplicationPolicy
 
   def initialize(record)
     @record = record

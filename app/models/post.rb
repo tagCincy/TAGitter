@@ -14,6 +14,11 @@ class Post < ApplicationRecord
 
   scope :active, -> { where(deleted: false) }
   scope :public_posts, -> { joins(user: [:profile]).where("profiles.protected" => false) }
+  scope :user_feed, -> (user) { where(user: user.followed) }
+
+  def destroy
+    update(deleted: true)
+  end
 
   def is_repost?
     repost.present?
