@@ -25,6 +25,9 @@ Rails.application.routes.draw do
           member do
             post '/favorite', to: 'posts/favorited#create'
             delete '/unfavorite', to: 'posts/favorited#destroy'
+
+            post '/repost', to: 'posts/reposts#create'
+            delete '/repost', to: 'posts/reposts#destroy'
           end
         end
       end
