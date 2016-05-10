@@ -5,6 +5,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   delegate :name, :bio, :dob, :location, :protected, :protected?, to: :profile
+  delegate :id , to: :profile, prefix: true
 
   validates :handle, presence: true, uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9_]+\z/ }, length: { in: 3..15 }
